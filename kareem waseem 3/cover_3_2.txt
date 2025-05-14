@@ -1,0 +1,750 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /counter_tb/g
+=== Design Unit: work.counter
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        10        10         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /counter_tb/g
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File counter.v
+------------------------------------IF Branch------------------------------------
+    21                                      9006     Count coming in to IF
+    21              1                        106         if (!rst_n)
+    23              1                       2662         else if (!load_n)
+    25              1                       4336         else if (ce)
+                                            1902     All False Count
+Branch totals: 4 hits of 4 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    26                                      4336     Count coming in to IF
+    26              1                       2183             if (up_down)
+    28              1                       2153             else 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    32                                      6901     Count coming in to IF
+    32              1                        441     assign max_count = (count_out == {WIDTH{1'b1}})? 1:0;
+    32              2                       6460     assign max_count = (count_out == {WIDTH{1'b1}})? 1:0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    33                                      6901     Count coming in to IF
+    33              1                        551     assign zero = (count_out == 0)? 1:0;
+    33              2                       6350     assign zero = (count_out == 0)? 1:0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       2         2         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /counter_tb/g --
+
+  File counter.v
+----------------Focused Condition View-------------------
+Line       32 Item    1  (count_out == {4{{1}}})
+Condition totals: 1 of 1 input term covered = 100.00%
+
+               Input Term   Covered  Reason for no coverage   Hint
+              -----------  --------  -----------------------  --------------
+  (count_out == {4{{1}}})         Y
+
+     Rows:       Hits  FEC Target                 Non-masking condition(s)      
+ ---------  ---------  --------------------       -------------------------     
+  Row   1:          1  (count_out == {4{{1}}})_0  -                             
+  Row   2:          1  (count_out == {4{{1}}})_1  -                             
+
+----------------Focused Condition View-------------------
+Line       33 Item    1  (count_out == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (count_out == 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (count_out == 0)_0    -                             
+  Row   2:          1  (count_out == 0)_1    -                             
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       7         7         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /counter_tb/g --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File counter.v
+    8                                                module counter (clk ,rst_n, load_n, up_down, ce, data_load, count_out, max_count, zero);
+    9                                                parameter WIDTH = 4;
+    10                                               input clk;
+    11                                               input rst_n;
+    12                                               input load_n;
+    13                                               input up_down;
+    14                                               input ce;
+    15                                               input [WIDTH-1:0] data_load;
+    16                                               output reg [WIDTH-1:0] count_out;
+    17                                               output max_count;
+    18                                               output zero;
+    19                                               
+    20              1                       9006     always @(posedge clk) begin
+    21                                                   if (!rst_n)
+    22              1                        106             count_out <= 0;
+    23                                                   else if (!load_n)
+    24              1                       2662             count_out <= data_load;
+    25                                                   else if (ce)
+    26                                                       if (up_down)
+    27              1                       2183                 count_out <= count_out + 1;
+    28                                                       else 
+    29              1                       2153                 count_out <= count_out - 1;
+    30                                               end
+    31                                               
+    32              1                       6902     assign max_count = (count_out == {WIDTH{1'b1}})? 1:0;
+    33              1                       6902     assign zero = (count_out == 0)? 1:0;
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         30        30         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /counter_tb/g --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                                ce           1           1      100.00 
+                                               clk           1           1      100.00 
+                                    count_out[3-0]           1           1      100.00 
+                                    data_load[0-3]           1           1      100.00 
+                                            load_n           1           1      100.00 
+                                         max_count           1           1      100.00 
+                                             rst_n           1           1      100.00 
+                                           up_down           1           1      100.00 
+                                              zero           1           1      100.00 
+
+Total Node Count     =         15 
+Toggled Node Count   =         15 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (30 of 30 bins)
+
+=================================================================================
+=== Instance: /counter_tb
+=== Design Unit: work.counter_tb
+=================================================================================
+
+Assertion Coverage:
+    Assertions                       1         1         0   100.00%
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/counter_tb/#ublk#95084642#137/immed__138
+                     counter_tb.sv(138)                 0          1
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        14        10         4    71.42%
+
+================================Branch Details================================
+
+Branch Coverage for instance /counter_tb
+NOTE: The modification timestamp for source file 'counter_tb.sv' has been altered since compilation.
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File counter_tb.sv
+------------------------------------IF Branch------------------------------------
+    34                                        16     Count coming in to IF
+    34              1                    ***0***           if (x != count_out) begin
+    38              1                         16           else 
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    53                                         1     Count coming in to IF
+    53              1                          1            if (max_count)
+    55              1                    ***0***           else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    63                                         2     Count coming in to IF
+    63              1                          2            if (zero)
+    65              1                    ***0***           else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    155                                     9000     Count coming in to IF
+    155             1                        100         if (!rst_n)
+    157             1                       2655         else if (!load_n)
+    159             1                       4330         else if (ce)
+                                            1915     All False Count
+Branch totals: 4 hits of 4 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    160                                     4330     Count coming in to IF
+    160             1                       2180             if (up_down)
+    162             1                       2150             else 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    169                                     9000     Count coming in to IF
+    169             1                    ***0***           if (count_out_ex != count_out) begin
+    173             1                       9000           else 
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       2         0         2     0.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /counter_tb --
+NOTE: The modification timestamp for source file 'counter_tb.sv' has been altered since compilation.
+
+  File counter_tb.sv
+----------------Focused Condition View-------------------
+Line       34 Item    1  (x != count_out)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (x != count_out)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (x != count_out)_0    -                             
+  Row   2:    ***0***  (x != count_out)_1    -                             
+
+----------------Focused Condition View-------------------
+Line       169 Item    1  (count_out_ex != count_out)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (count_out_ex != count_out)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (count_out_ex != count_out)_0  -                             
+  Row   2:    ***0***  (count_out_ex != count_out)_1  -                             
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      89        81         8    91.01%
+
+================================Statement Details================================
+
+Statement Coverage for instance /counter_tb --
+NOTE: The modification timestamp for source file 'counter_tb.sv' has been altered since compilation.
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File counter_tb.sv
+    2                                                module counter_tb ();
+    3                                                
+    4                                                    parameter WIDTH = 4;
+    5                                                    logic clk;
+    6                                                    logic rst_n;
+    7                                                    logic load_n;
+    8                                                    logic up_down;
+    9                                                    logic ce;
+    10                                                   logic [WIDTH-1:0] data_load;
+    11                                                   logic [WIDTH-1:0] count_out;
+    12                                                   logic max_count;
+    13                                                   logic zero;
+    14                                               
+    15                                                   logic [WIDTH-1:0] count_out_ex;
+    16                                                   int error_counter = 0;
+    17                                                   int correct_counter = 0;
+    18                                                
+    19                                                   counter #(.WIDTH(WIDTH)) g (.*);
+    20                                               
+    21              1                          1         counter_class counter1 = new;
+    22                                               
+    23                                                   initial begin
+    24              1                          1             clk = 0;
+    25              1                          1             forever begin
+    26              1                      18045                 #1 clk = ~clk;
+    26              2                      18044     
+    27                                                          counter1.clk = clk;
+    28                                                       end
+    29                                                   end
+    30                                               
+    31                                                  task cheack_result (input [WIDTH-1:0] x);
+    32                                                     
+    33              1                         16           @(negedge clk);
+    34                                                     if (x != count_out) begin
+    35              1                    ***0***              $display("%t error",$time);
+    36              1                    ***0***              error_counter++;
+    37                                                     end
+    38                                                     else 
+    39              1                         16             correct_counter++;   
+    40                                                      
+    41                                                  endtask 
+    42                                               
+    43                                                  task cheack_reset ;
+    44              1                          3             rst_n = 0;
+    45              1                          3             @(negedge clk);
+    46              1                          3             cheack_result (0);
+    47              1                          3             rst_n = 1;
+    48                                                      
+    49                                                   endtask
+    50                                               
+    51                                                   task cheack_max ;
+    52              1                          1            @(negedge clk);
+    53                                                      if (max_count)
+    54              1                          1              correct_counter++;
+    55                                                     else begin
+    56              1                    ***0***              $display("%t error",$time);        
+    57              1                    ***0***             correct_counter++;         
+    58                                                     end
+    59                                                   endtask 
+    60                                               
+    61                                                   task cheack_zero ;
+    62              1                          2            @(negedge clk);
+    63                                                      if (zero)
+    64              1                          2              correct_counter++;
+    65                                                     else begin
+    66              1                    ***0***              $display("%t error",$time);        
+    67              1                    ***0***             correct_counter++;         
+    68                                                     end
+    69                                                   endtask   
+    70                                                  
+    71                                                  initial begin
+    72                                                   ///label1/////
+    73              1                          1         cheack_reset;
+    74                                                   //////label2////
+    75              1                          1         load_n = 0;
+    76              1                          1         data_load = 4'b0001;
+    77              1                          1         cheack_result (data_load);
+    78              1                          1         load_n = 1;
+    79                                                   ///label3/////
+    80              1                          1         cheack_reset;    
+    81                                                   ////////label4//////
+    82              1                          1         ce = 1;
+    83              1                          1         up_down = 0;
+    84              1                          1         cheack_result (count_out-1);
+    85              1                          1         up_down = 1;
+    86              1                          1         cheack_result(count_out +1);    
+    87                                                   //////label5////
+    88              1                          1         ce = 0;
+    89              1                          1         load_n = 0;
+    90              1                          1         data_load = 4'b0000;
+    91              1                          1         cheack_result (data_load);
+    92              1                          1         cheack_zero ;
+    93              1                          1         load_n = 1;
+    94                                                   //////label6////
+    95              1                          1         ce = 1;
+    96              1                          1         load_n = 0;
+    97              1                          1         data_load = 4'b0000;
+    98              1                          1         cheack_result (data_load);
+    99              1                          1         cheack_zero ;
+    100             1                          1         load_n = 1;    
+    101                                                  ////////label7//////
+    102             1                          1         up_down = 0;
+    103             1                          1         cheack_result (count_out-1);
+    104             1                          1         up_down = 1;
+    105             1                          1         cheack_result(count_out +1);
+    106                                                  //////label8////
+    107             1                          1         load_n = 0;
+    108             1                          1         data_load = 4'b0100;
+    109             1                          1         cheack_result (data_load);
+    110             1                          1         load_n = 1;
+    111                                                  ////////label9//////
+    112             1                          1         up_down = 0;
+    113             1                          1         cheack_result (count_out-1);
+    114             1                          1         up_down = 1;
+    115             1                          1         cheack_result(count_out +1);
+    116                                                  //////label10////
+    117             1                          1         load_n = 0;
+    118             1                          1         data_load = 4'b1111;
+    119             1                          1         cheack_result (data_load);
+    120             1                          1         cheack_max ;
+    121             1                          1         load_n = 1;    
+    122                                                  //////label11////
+    123             1                          1         load_n = 0;
+    124             1                          1         data_load = 4'b0010;
+    125             1                          1         cheack_result (data_load);
+    126             1                          1         load_n = 1;   
+    127                                                  //////label12////
+    128             1                          1         load_n = 0;
+    129             1                          1         data_load = 4'b1100;
+    130             1                          1         cheack_result (data_load);
+    131             1                          1         load_n = 1;     
+    132                                                  ///label13/////
+    133             1                          1         cheack_reset;    
+    134                                                  
+    135                                                  /// 14
+    136                                                  
+    137             1                       9000          repeat (9000) begin
+    138                                                      assert (counter1.randomize());
+    139             1                       9000             rst_n = counter1.reset;
+    140             1                       9000             load_n = counter1.load_n;
+    141             1                       9000             ce = counter1.ce;
+    142             1                       9000             data_load = counter1.data_load;
+    143             1                       9000             up_down = counter1.up_down;
+    144             1                       9000             counter1.count_out = count_out;
+    145             1                       9000             golden_model ;
+    146             1                       9000             cheack_out ;
+    147                                                      
+    148                                                  end
+    149                                                  
+    150             1                          1         $display("error_counter = %d  correct_counter = %d",error_counter,correct_counter);
+    151             1                          1         $stop;
+    152                                                 end    
+    153                                              
+    154                                                 task golden_model ;
+    155                                                  if (!rst_n)
+    156             1                        100             count_out_ex <= 0;
+    157                                                  else if (!load_n)
+    158             1                       2655             count_out_ex <= data_load;
+    159                                                  else if (ce)
+    160                                                      if (up_down)
+    161             1                       2180                 count_out_ex <= count_out_ex + 1;
+    162                                                      else 
+    163             1                       2150                 count_out_ex <= count_out_ex - 1;
+    164                                                 endtask 
+    165                                              
+    166                                                 task cheack_out ;
+    167                                                    
+    168             1                       9000           @(negedge clk);
+    169                                                    if (count_out_ex != count_out) begin
+    170             1                    ***0***              $display("%t error",$time);
+    171             1                    ***0***              error_counter++;
+    172                                                    end
+    173                                                    else 
+    174             1                       9000             correct_counter++;   
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        166        65       101    39.15%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /counter_tb --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                                ce           1           1      100.00 
+                                               clk           1           1      100.00 
+                             correct_counter[0-12]           1           1      100.00 
+                               correct_counter[13]           0           1       50.00 
+                            correct_counter[14-31]           0           0        0.00 
+                                    count_out[0-3]           1           1      100.00 
+                                 count_out_ex[0-3]           1           1      100.00 
+                                    data_load[0-3]           1           1      100.00 
+                               error_counter[0-31]           0           0        0.00 
+                                            load_n           1           1      100.00 
+                                         max_count           1           1      100.00 
+                                             rst_n           1           1      100.00 
+                                           up_down           1           1      100.00 
+                                              zero           1           1      100.00 
+
+Total Node Count     =         83 
+Toggled Node Count   =         32 
+Untoggled Node Count =         51 
+
+Toggle Coverage      =      39.15% (65 of 166 bins)
+
+=================================================================================
+=== Instance: /counter_pkg
+=== Design Unit: work.counter_pkg
+=================================================================================
+
+Covergroup Coverage:
+    Covergroups                      1        na        na     0.00%
+        Coverpoints/Crosses          5        na        na        na
+            Covergroup Bins         50         0        50     0.00%
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /counter_pkg/counter_class/counter_g              0.00%        100          -    ZERO                 
+    covered/total bins:                                     0         50          -                      
+    missing/total bins:                                    50         50          -                      
+    % Hit:                                              0.00%        100          -                      
+    Coverpoint label1                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+    Coverpoint label2                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+    Coverpoint label3                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          1          -                      
+        missing/total bins:                                 1          1          -                      
+        % Hit:                                          0.00%        100          -                      
+    Coverpoint label4                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+    Coverpoint label5                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          1          -                      
+        missing/total bins:                                 1          1          -                      
+        % Hit:                                          0.00%        100          -                      
+ Covergroup instance \/counter_pkg::counter_class::counter_g  
+                                                        0.00%        100          -    ZERO                 
+    covered/total bins:                                     0         50          -                      
+    missing/total bins:                                    50         50          -                      
+    % Hit:                                              0.00%        100          -                      
+    Coverpoint label1                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin auto[0]                                         0          1          -    ZERO                 
+        bin auto[1]                                         0          1          -    ZERO                 
+        bin auto[2]                                         0          1          -    ZERO                 
+        bin auto[3]                                         0          1          -    ZERO                 
+        bin auto[4]                                         0          1          -    ZERO                 
+        bin auto[5]                                         0          1          -    ZERO                 
+        bin auto[6]                                         0          1          -    ZERO                 
+        bin auto[7]                                         0          1          -    ZERO                 
+        bin auto[8]                                         0          1          -    ZERO                 
+        bin auto[9]                                         0          1          -    ZERO                 
+        bin auto[10]                                        0          1          -    ZERO                 
+        bin auto[11]                                        0          1          -    ZERO                 
+        bin auto[12]                                        0          1          -    ZERO                 
+        bin auto[13]                                        0          1          -    ZERO                 
+        bin auto[14]                                        0          1          -    ZERO                 
+        bin auto[15]                                        0          1          -    ZERO                 
+    Coverpoint label2                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin auto[0]                                         0          1          -    ZERO                 
+        bin auto[1]                                         0          1          -    ZERO                 
+        bin auto[2]                                         0          1          -    ZERO                 
+        bin auto[3]                                         0          1          -    ZERO                 
+        bin auto[4]                                         0          1          -    ZERO                 
+        bin auto[5]                                         0          1          -    ZERO                 
+        bin auto[6]                                         0          1          -    ZERO                 
+        bin auto[7]                                         0          1          -    ZERO                 
+        bin auto[8]                                         0          1          -    ZERO                 
+        bin auto[9]                                         0          1          -    ZERO                 
+        bin auto[10]                                        0          1          -    ZERO                 
+        bin auto[11]                                        0          1          -    ZERO                 
+        bin auto[12]                                        0          1          -    ZERO                 
+        bin auto[13]                                        0          1          -    ZERO                 
+        bin auto[14]                                        0          1          -    ZERO                 
+        bin auto[15]                                        0          1          -    ZERO                 
+    Coverpoint label3                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          1          -                      
+        missing/total bins:                                 1          1          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin overflow                                        0          1          -    ZERO                 
+    Coverpoint label4                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin auto[0]                                         0          1          -    ZERO                 
+        bin auto[1]                                         0          1          -    ZERO                 
+        bin auto[2]                                         0          1          -    ZERO                 
+        bin auto[3]                                         0          1          -    ZERO                 
+        bin auto[4]                                         0          1          -    ZERO                 
+        bin auto[5]                                         0          1          -    ZERO                 
+        bin auto[6]                                         0          1          -    ZERO                 
+        bin auto[7]                                         0          1          -    ZERO                 
+        bin auto[8]                                         0          1          -    ZERO                 
+        bin auto[9]                                         0          1          -    ZERO                 
+        bin auto[10]                                        0          1          -    ZERO                 
+        bin auto[11]                                        0          1          -    ZERO                 
+        bin auto[12]                                        0          1          -    ZERO                 
+        bin auto[13]                                        0          1          -    ZERO                 
+        bin auto[14]                                        0          1          -    ZERO                 
+        bin auto[15]                                        0          1          -    ZERO                 
+    Coverpoint label5                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          1          -                      
+        missing/total bins:                                 1          1          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin overflow                                        0          1          -    ZERO                 
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /counter_pkg --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File counter_pkg.sv
+    1                                                package counter_pkg;
+    2                                                
+    3                                                  class counter_class ;
+    4                                                
+    5                                                    parameter WIDTH = 4;
+    6                                                    parameter MAX = {WIDTH{1'b1}};
+    7                                                    parameter MIN = {WIDTH{1'b0}};
+    8                                                    rand logic reset;
+    9                                                    rand logic load_n;
+    10                                                   rand logic ce;
+    11                                                   rand logic [WIDTH-1:0] data_load;
+    12                                                   rand logic up_down;
+    13                                                   bit clk;
+    14                                                   logic [WIDTH-1:0] count_out;
+    15                                                   
+    16                                               
+    17                                                   constraint counter_cst {
+    18                                                       reset dist {0 := 1, 1:= 99};
+    19                                                       load_n  dist {0 := 30, 1:= 70};
+    20                                                       ce dist {0 := 30, 1:= 70};  
+    21                                                   }; 
+    22                                               
+    23                                                   covergroup counter_g @(posedge clk);
+    24                                                       label1 : coverpoint data_load iff (!load_n && reset);
+    25                                                       label2 : coverpoint count_out iff (reset && ce && up_down);
+    26                                                       label3 : coverpoint count_out iff (reset && ce && up_down) {
+    27                                                         bins overflow = (MAX => MIN);
+    28                                                       }
+    29                                                       label4 : coverpoint count_out iff (reset && ce && !up_down);
+    30                                                       label5 : coverpoint count_out iff (reset && ce && !up_down) {
+    31                                                         bins overflow = (MIN => MAX);
+    32                                                       }        
+    33                                                   endgroup
+    34                                               
+    35                                                   function new();
+    36              1                          1             counter_g = new();            
+
+
+COVERGROUP COVERAGE:
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /counter_pkg/counter_class/counter_g              0.00%        100          -    ZERO                 
+    covered/total bins:                                     0         50          -                      
+    missing/total bins:                                    50         50          -                      
+    % Hit:                                              0.00%        100          -                      
+    Coverpoint label1                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+    Coverpoint label2                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+    Coverpoint label3                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          1          -                      
+        missing/total bins:                                 1          1          -                      
+        % Hit:                                          0.00%        100          -                      
+    Coverpoint label4                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+    Coverpoint label5                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          1          -                      
+        missing/total bins:                                 1          1          -                      
+        % Hit:                                          0.00%        100          -                      
+ Covergroup instance \/counter_pkg::counter_class::counter_g  
+                                                        0.00%        100          -    ZERO                 
+    covered/total bins:                                     0         50          -                      
+    missing/total bins:                                    50         50          -                      
+    % Hit:                                              0.00%        100          -                      
+    Coverpoint label1                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin auto[0]                                         0          1          -    ZERO                 
+        bin auto[1]                                         0          1          -    ZERO                 
+        bin auto[2]                                         0          1          -    ZERO                 
+        bin auto[3]                                         0          1          -    ZERO                 
+        bin auto[4]                                         0          1          -    ZERO                 
+        bin auto[5]                                         0          1          -    ZERO                 
+        bin auto[6]                                         0          1          -    ZERO                 
+        bin auto[7]                                         0          1          -    ZERO                 
+        bin auto[8]                                         0          1          -    ZERO                 
+        bin auto[9]                                         0          1          -    ZERO                 
+        bin auto[10]                                        0          1          -    ZERO                 
+        bin auto[11]                                        0          1          -    ZERO                 
+        bin auto[12]                                        0          1          -    ZERO                 
+        bin auto[13]                                        0          1          -    ZERO                 
+        bin auto[14]                                        0          1          -    ZERO                 
+        bin auto[15]                                        0          1          -    ZERO                 
+    Coverpoint label2                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin auto[0]                                         0          1          -    ZERO                 
+        bin auto[1]                                         0          1          -    ZERO                 
+        bin auto[2]                                         0          1          -    ZERO                 
+        bin auto[3]                                         0          1          -    ZERO                 
+        bin auto[4]                                         0          1          -    ZERO                 
+        bin auto[5]                                         0          1          -    ZERO                 
+        bin auto[6]                                         0          1          -    ZERO                 
+        bin auto[7]                                         0          1          -    ZERO                 
+        bin auto[8]                                         0          1          -    ZERO                 
+        bin auto[9]                                         0          1          -    ZERO                 
+        bin auto[10]                                        0          1          -    ZERO                 
+        bin auto[11]                                        0          1          -    ZERO                 
+        bin auto[12]                                        0          1          -    ZERO                 
+        bin auto[13]                                        0          1          -    ZERO                 
+        bin auto[14]                                        0          1          -    ZERO                 
+        bin auto[15]                                        0          1          -    ZERO                 
+    Coverpoint label3                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          1          -                      
+        missing/total bins:                                 1          1          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin overflow                                        0          1          -    ZERO                 
+    Coverpoint label4                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0         16          -                      
+        missing/total bins:                                16         16          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin auto[0]                                         0          1          -    ZERO                 
+        bin auto[1]                                         0          1          -    ZERO                 
+        bin auto[2]                                         0          1          -    ZERO                 
+        bin auto[3]                                         0          1          -    ZERO                 
+        bin auto[4]                                         0          1          -    ZERO                 
+        bin auto[5]                                         0          1          -    ZERO                 
+        bin auto[6]                                         0          1          -    ZERO                 
+        bin auto[7]                                         0          1          -    ZERO                 
+        bin auto[8]                                         0          1          -    ZERO                 
+        bin auto[9]                                         0          1          -    ZERO                 
+        bin auto[10]                                        0          1          -    ZERO                 
+        bin auto[11]                                        0          1          -    ZERO                 
+        bin auto[12]                                        0          1          -    ZERO                 
+        bin auto[13]                                        0          1          -    ZERO                 
+        bin auto[14]                                        0          1          -    ZERO                 
+        bin auto[15]                                        0          1          -    ZERO                 
+    Coverpoint label5                                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          1          -                      
+        missing/total bins:                                 1          1          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin overflow                                        0          1          -    ZERO                 
+
+TOTAL COVERGROUP COVERAGE: 0.00%  COVERGROUP TYPES: 1
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/counter_tb/#ublk#95084642#137/immed__138
+                     counter_tb.sv(138)                 0          1
+
+Total Coverage By Instance (filtered view): 62.25%
+
